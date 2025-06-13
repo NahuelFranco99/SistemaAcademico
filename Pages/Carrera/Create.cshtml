@@ -1,0 +1,24 @@
+﻿namespace SistemaAcademico.Pages.Carrera
+@page
+@model SistemaAcademico.Pages.CreateModel
+@{
+}
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Carrera.Nombre"></label>
+        <input asp-for="Carrera.Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Carrera.DuracionAnios"></label>
+        <input asp-for="Carrera.DuracionAnios" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Carrera.TituloOtorgado"></label>
+        <input asp-for="Carrera.TituloOtorgado" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Carrera.Modalidad"></label>
+        <input asp-for="Carrera.Modalidad" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
