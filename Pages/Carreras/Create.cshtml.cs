@@ -12,7 +12,6 @@ namespace SistemaAcademico.Pages.Carreras
         public Carrera Carrera { get; set; }
         public void OnGet()
         {
-            //Modalidades = OpcionesModalidad.Lista;
         }
         public IActionResult OnPost()
         {
