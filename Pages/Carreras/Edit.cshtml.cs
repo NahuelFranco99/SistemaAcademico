@@ -43,4 +43,3 @@ namespace SistemaAcademico.Pages.Carreras
         }
     }
 }
-
