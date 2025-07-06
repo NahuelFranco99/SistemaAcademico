@@ -5,18 +5,15 @@ namespace SistemaAcademico.Models
     public class Carrera
     {
         public int Id { get; set; }
-        [Required]
-
+        [Required(ErrorMessage = "El nombre es obligatorio")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "El nombrees obligatorio")]
-
-        public int DuracionAnios { get; set; }
-        [Range(1, 10, ErrorMessage = "Duración entre 1 y 10 años")]
-
-        public string TituloOtorgado { get; set; }
+        [Range(1, 7, ErrorMessage = "Duración entre 1 y 7 años")]
+        [Display(Name = "Duración en Años")]
+        public int? DuracionAnios { get; set; }
+        [StringLength(50, ErrorMessage = "Máximo 50 caracteres")]
         [Display(Name = "Título otorgado")]
-        [StringLength(20, MinimumLength = 5, ErrorMessage = "Debe tener entre 5 y 20 caracteres")]
-
+        public string TituloOtorgado { get; set; }
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Debe tener entre 5 y 30 caracteres")]
         public string Modalidad { get; set; }
     }
 }

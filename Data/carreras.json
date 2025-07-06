@@ -1,6 +1,16 @@
-﻿namespace SistemaAcademico.Data
-{
-    public class carreras
-    {
-    }
-}
+﻿[
+  {
+    "Id": 1,
+    "Nombre": "Ingeniería en Sistemas",
+    "DuracionAnios": 5,
+    "TituloOtorgado": "Ingeniero/a",
+    "Modalidad": "Presencial"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Abogacía",
+    "DuracionAnios": 5,
+    "TituloOtorgado": "Abogado/a",
+    "Modalidad": "Hibrida"
+  }
+]

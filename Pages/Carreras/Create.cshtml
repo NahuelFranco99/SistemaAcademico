@@ -3,8 +3,6 @@
 @{
 }
 <form method="post">
-    <input type="hidden" asp-for="Carrera.Id" />
-
     <div class="form-group">
         <label asp-for="Carrera.Nombre"></label>
         <input asp-for="Carrera.Nombre" class="form-control" />
@@ -22,12 +20,12 @@
     </div>
     <div class="form-group">
         <label asp-for="Carrera.Modalidad"></label>
-        <input asp-for="Carrera.Modalidad" class="form-control" />
         <select asp-for="Carrera.Modalidad"
-                asp-items="@(new SelectList(Model.Modalidades))" class="form-control">
-            <option value="">"seleccione opcion "</option>
+                asp-items="@(new SelectList(Model.Modalidades))"
+                class="form-control">
+            <option value="">Seleccione una opción</option>
         </select>
-        span asp-validation-for="Carrera.Modalidad" class="text-danger"></span>
+        <span asp-validation-for="Carrera.Modalidad" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

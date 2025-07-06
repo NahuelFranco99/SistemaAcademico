@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Data;
+using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
 
 namespace SistemaAcademico.Pages.Carreras
@@ -9,9 +10,12 @@ namespace SistemaAcademico.Pages.Carreras
     {
         [BindProperty]
         public Carrera Carrera { get; set; }
+        public List<string> Modalidades { get; set; } = new();
 
         public void OnGet(int id)
         {
+            Modalidades = OpcionesModalidad.Lista;
+
             foreach (var c in DatosCompartidos.Carreras)
             {
                 if (c.Id == id)
@@ -23,6 +27,8 @@ namespace SistemaAcademico.Pages.Carreras
         }
         public IActionResult OnPost()
         {
+            Modalidades = OpcionesModalidad.Lista;
+
             if (!ModelState.IsValid)
             {
                 return Page();

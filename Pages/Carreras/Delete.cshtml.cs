@@ -19,7 +19,7 @@ namespace SistemaAcademico.Pages.Carreras
                     Carrera = c;
                     break;
                 }
-            }
+            }   
         }
         public IActionResult OnPost()
         {
@@ -41,4 +41,3 @@ namespace SistemaAcademico.Pages.Carreras
         }
     }
 }
-
