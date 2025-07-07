@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using SistemaAcademico.Data;
 using SistemaAcademico.Models;
 using SistemaAcademico.Servicios;
 

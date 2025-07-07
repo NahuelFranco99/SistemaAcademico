@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Models;
-using SistemaAcademico.Data;
+using SistemaAcademico.Servicios;
 
 namespace SistemaAcademico.Pages.Carreras
 {
@@ -10,33 +10,20 @@ namespace SistemaAcademico.Pages.Carreras
         [BindProperty]
         public Carrera Carrera { get; set; }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
-            foreach (var c in DatosCompartidos.Carreras)
+            var carrera = ServicioCarrera.BuscarPorId(id);
+            if (carrera == null)
             {
-                if (c.Id == id)
-                {
-                    Carrera = c;
-                    break;
-                }
-            }   
+                return RedirectToPage("Index");
+            }
+            Carrera = carrera;
+            return Page();
+
         }
         public IActionResult OnPost()
         {
-            Carrera carreraElminar = null;
-
-            foreach (var c in DatosCompartidos.Carreras)
-            {
-                if (c.Id == Carrera.Id)
-                {
-                    carreraElminar = c;
-                    break;
-                }
-            }
-            if (carreraElminar != null)
-            {
-                DatosCompartidos.Carreras.Remove(carreraElminar);
-            }
+            ServicioCarrera.EliminarPorId(Carrera.Id);
             return RedirectToPage("Index");
         }
     }

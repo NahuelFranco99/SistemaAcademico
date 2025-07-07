@@ -3,6 +3,7 @@
 @{
 }
 <form method="post">
+    <input type="hidden" asp-for="Carrera.Id" />
     <div class="form-group">
         <label asp-for="Carrera.Nombre"></label>
         <input asp-for="Carrera.Nombre" class="form-control" />
@@ -27,5 +28,5 @@
         </select>
         <span asp-validation-for="Carrera.Modalidad" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
 </form>

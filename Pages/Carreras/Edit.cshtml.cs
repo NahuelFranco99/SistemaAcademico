@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SistemaAcademico.Data;
 using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
+using SistemaAcademico.Servicios;
 
 namespace SistemaAcademico.Pages.Carreras
 {
@@ -16,13 +16,10 @@ namespace SistemaAcademico.Pages.Carreras
         {
             Modalidades = OpcionesModalidad.Lista;
 
-            foreach (var c in DatosCompartidos.Carreras)
+            Carrera? carrera = ServicioCarrera.BuscarPorId(id);
+            if (carrera == null)
             {
-                if (c.Id == id)
-                {
-                    Carrera = c;
-                    break;
-                }
+                Carrera = carrera;
             }
         }
         public IActionResult OnPost()
@@ -33,18 +30,8 @@ namespace SistemaAcademico.Pages.Carreras
             {
                 return Page();
             }
-            // Actualizar la carrera en la lista
-            foreach (var c in DatosCompartidos.Carreras)
-            {
-                if (c.Id == Carrera.Id)
-                {
-                    c.Nombre = Carrera.Nombre;
-                    c.DuracionAnios = Carrera.DuracionAnios;
-                    c.TituloOtorgado = Carrera.TituloOtorgado;
-                    c.Modalidad = Carrera.Modalidad;
-                    break;
-                }
-            }
+            
+            ServicioCarrera.EditarCarrera(Carrera);
             return RedirectToPage("Index");
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SistemaAcademico.Data;
 using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
 using SistemaAcademico.Servicios;
@@ -28,6 +27,7 @@ namespace SistemaAcademico.Pages.Carreras
                 return Page();
             }
 
+            ServicioCarrera.AgregarCarrera(Carrera);
             return RedirectToPage("Index");
         }
     }
