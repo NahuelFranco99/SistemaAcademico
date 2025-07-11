@@ -8,38 +8,30 @@ namespace SistemaAcademico.Servicios
     public class ServicioCarrera
     {
 
-        private readonly RepositorioCrudJson<Carrera> crud;
-
-        //public static string ruta = "Data/carreras.json";
-
-        public ServicioCarrera()
+        private readonly IRepositorio<Carrera> _repo;
+        public ServicioCarrera(IRepositorio<Carrera> repo)
         {
-            crud = new RepositorioCrudJson<Carrera>("carreras");
+            _repo = repo;
         }
-
-        public List<Carrera> ObtenerCarreras()
+        public List<Carrera> ObtenerTodos()
         {
-            return crud.ObtenerTodos();
+            return _repo.ObtenerTodos();
         }
-
-        public void Agregar(Carrera carrera)
-        {
-            crud.Agregar(carrera);
-        }
-
         public Carrera? BuscarPorId(int id)
         {
-            return crud.BuscarPorId(id);
+            return _repo.BuscarPorId(id);
         }
-
+        public void Agregar(Carrera carrera)
+        {
+            _repo.Agregar(carrera);
+        }
         public void Editar(Carrera carrera)
         {
-            crud.Editar(carrera);
+            _repo.Editar(carrera);
         }
-
         public void EliminarPorId(int id)
         {
-            crud.EliminarPorId(id);
+            _repo.EliminarPorId(id);
         }
 
         //public static string LeerTextoDelArchivo()

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SistemaAcademico.AccesoAdatos;
 using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
 using SistemaAcademico.Repositorios;
@@ -20,14 +21,13 @@ namespace SistemaAcademico.Pages.Carreras
 
         public CreateModel()
         {
-            servicio = new ServicioCarrera();
+            IAccesoDatos<Carrera> acceso = new AccesoDatosJson<Carrera>("carreras");
+            IRepositorio<Carrera> repo = new RepositorioCrudJson<Carrera>(acceso);
+            servicio = new ServicioCarrera(repo);
         }
 
         public void OnGet()
         {
-            var servicioCarrera = new RepositorioCrudJson<Carrera>("carreras");
-            List<Carrera> carreras = servicioCarrera.ObtenerTodos();
-
             Modalidades = OpcionesModalidad.Lista;
         }
         public IActionResult OnPost()

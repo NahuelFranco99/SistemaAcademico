@@ -4,38 +4,37 @@ using SistemaAcademico.Helpers;
 using SistemaAcademico.Pages;
 using SistemaAcademico.Servicios;
 using System.Text.Json;
+using SistemaAcademico.AccesoAdatos;
 
 
 namespace SistemaAcademico.Repositorios
 {
-    public class RepositorioCrudJson<T> where T : class
+    public class RepositorioCrudJson<T> : IRepositorio<T> where T : class
     {
-        private string ruta;
-        public RepositorioCrudJson(string nombreArchivo)
+        private readonly IAccesoDatos<T> _acceso;
+        public RepositorioCrudJson(IAccesoDatos<T> acceso)
         {
-            ruta = $"Data/{nombreArchivo}.json";
+            _acceso = acceso;
         }
 
-        public string LeerTextoDelArchivo()
-        {
-            if (File.Exists(ruta))
-            {
-                return File.ReadAllText(ruta);
-            }
-            return "[]";
-        }
+
+        //public string LeerTextoDelArchivo()
+        //{
+        //    if (File.Exists(ruta))
+        //    {
+        //        return File.ReadAllText(ruta);
+        //    }
+        //    return "[]";
+        //}
 
         public List<T> ObtenerTodos()
         {
-            string json = LeerTextoDelArchivo();
-            var lista = JsonSerializer.Deserialize<List<T>>(json);
-            return lista ?? new List<T>();
+            return _acceso.Leer();
         }
 
         public void Guardar(List<T> lista)
         {
-            string json = JsonSerializer.Serialize(lista);
-            File.WriteAllText(ruta, json);
+            _acceso.Guardar(lista);
         }
 
         public int ObtenerNuevoId(List<T> lista)
