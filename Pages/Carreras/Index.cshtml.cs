@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Models;
+using SistemaAcademico.Repositorios;
 using SistemaAcademico.Servicios;
 
 namespace SistemaAcademico.Pages.Carreras
@@ -8,10 +9,17 @@ namespace SistemaAcademico.Pages.Carreras
     {
         public List<Carrera> Carreras { get; set; }
 
-        public void OnGet()
+        private readonly ServicioCarrera servicio;
+
+        public IndexModel()
         {
-            Carreras = ServicioCarrera.ObtenerCarreras();
+            servicio = new ServicioCarrera();
         }
 
+        public void OnGet()
+        {
+            var servicioCarrera = new RepositorioCrudJson<Carrera>("carreras");
+            List<Carrera> carreras = servicioCarrera.ObtenerTodos();
+        }
     }
 }

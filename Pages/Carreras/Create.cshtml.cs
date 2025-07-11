@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SistemaAcademico.Helpers;
 using SistemaAcademico.Models;
+using SistemaAcademico.Repositorios;
 using SistemaAcademico.Servicios;
+
 
 namespace SistemaAcademico.Pages.Carreras
 
@@ -14,8 +16,18 @@ namespace SistemaAcademico.Pages.Carreras
 
         public List<string> Modalidades { get; set; } = new();
 
+        private readonly ServicioCarrera servicio;
+
+        public CreateModel()
+        {
+            servicio = new ServicioCarrera();
+        }
+
         public void OnGet()
         {
+            var servicioCarrera = new RepositorioCrudJson<Carrera>("carreras");
+            List<Carrera> carreras = servicioCarrera.ObtenerTodos();
+
             Modalidades = OpcionesModalidad.Lista;
         }
         public IActionResult OnPost()
@@ -27,7 +39,7 @@ namespace SistemaAcademico.Pages.Carreras
                 return Page();
             }
 
-            ServicioCarrera.AgregarCarrera(Carrera);
+            servicio.Agregar(Carrera);
             return RedirectToPage("Index");
         }
     }
