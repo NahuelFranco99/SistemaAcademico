@@ -1,10 +1,10 @@
 ﻿@page
-@model SistemaAcademico.Pages.Carreras.IndexModel
+@model SistemaAcademico.Pages.Alumnos.IndexModel
 
-<a asp-page="Create" class="btn btn-success mb-3">Agregar carrera</a>
-@if (Model.Carreras.Count == 0)
+<a asp-page="Create" class="btn btn-success mb-3">Agregar alumno</a>
+@if (Model.Alumnos.Count == 0)
 {
-	<p class="text-muted">Aún no hay carreras cargadas.</p>
+	<p class="text-muted">Aún no hay alumnos cargados.</p>
 }
 else
 {
@@ -13,24 +13,26 @@ else
 			<tr>
 				<th>ID</th>
 				<th>Nombre</th>
-				<th>Modalidad</th>
-				<th>Duración(años)</th>
-				<th>Título otorgado</th>
+				<th>Apellido</th>
+				<th>DNI</th>
+				<th>Email</th>
+				<th>Fecha de nacimiento</th>
 				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var carrera in Model.Carreras)
+			@foreach (var alumno in Model.Alumnos)
 			{
 				<tr>
-					<td>@carrera.Id</td>
-					<td>@carrera.Nombre</td>
-					<td>@carrera.Modalidad</td>
-					<td>@carrera.DuracionAnios</td>
-					<td>@carrera.TituloOtorgado</td>
+					<td>@alumno.Id</td>
+					<td>@alumno.Nombre</td>
+					<td>@alumno.Apellido</td>
+					<td>@alumno.Dni</td>
+					<td>@alumno.Email</td>
+					<td>@alumno.FechaDeNacimiento</td>
 					<td>
-						<a asp-page="Edit" asp-route-id="@carrera.Id" class="btn btn-warning btn-sm">Editar</a>
-						<a asp-page="Delete" asp-route-id="@carrera.Id" class="btn btn-danger btn-sm">Eliminar</a>
+						<a asp-page="Edit" asp-route-id="@alumno.Id" class="btn btn-warning btn-sm">Editar</a>
+						<a asp-page="Delete" asp-route-id="@alumno.Id" class="btn btn-danger btn-sm">Eliminar</a>
 					</td>
 				</tr>
 			}

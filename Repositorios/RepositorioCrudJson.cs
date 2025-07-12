@@ -17,16 +17,6 @@ namespace SistemaAcademico.Repositorios
             _acceso = acceso;
         }
 
-
-        //public string LeerTextoDelArchivo()
-        //{
-        //    if (File.Exists(ruta))
-        //    {
-        //        return File.ReadAllText(ruta);
-        //    }
-        //    return "[]";
-        //}
-
         public List<T> ObtenerTodos()
         {
             return _acceso.Leer();
